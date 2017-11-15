@@ -360,9 +360,24 @@ extwlist_ProcessUtility(PROCESS_UTILITY_PROTO_ARGS)
 				 */
 				if (all_in_whitelist)
 				{
-					call_ProcessUtility(PROCESS_UTILITY_ARGS,
-										NULL, NULL, NULL, NULL, NULL);
-					return;
+					char* current_user = get_current_user_name();
+					char* database_owner = get_current_database_owner_name()
+
+					if(strcmp(
+								CStringGetTextDatum(database_owner), 
+								CStringGetTextDatum(current_user)
+					 		) == 0)
+					{
+						call_ProcessUtility(PROCESS_UTILITY_ARGS,
+											NULL, NULL, NULL, NULL, NULL);
+						return;
+					}
+					else {
+						ereport(ERROR,
+							(errcode(ERRCODE_INSUFFICIENT_PRIVILEGE),
+					 		errmsg("permission denied to drop extension, role %s is not authorized on this database", current_user)));
+						return;
+					}
 				}
 			}
 			break;

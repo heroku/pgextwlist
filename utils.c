@@ -510,6 +510,26 @@ get_current_database_owner_name()
 }
 
 /*
+ * get_current_user_name
+ *
+ * get the current effective user ID. translates the oid
+ * to get user name from user oid, returns NULL for nonexistent roleid if noerr
+ * is true.
+ * 
+ */
+static char *
+get_current_user_name()
+{
+	return CStringGetTextDatum(
+		GetUserNameFromId(GetUserId()
+#if PG_MAJOR_VERSION >= 905
+									, false
+#endif
+		)
+	);
+}
+
+/*
  * Execute given script
  */
 void
