@@ -363,7 +363,7 @@ extwlist_ProcessUtility(PROCESS_UTILITY_PROTO_ARGS)
 					char* current_user = get_current_user_name();
 					char* database_owner = get_current_database_owner_name()
 
-					if(strcmp(database_owner, current_user) == 0)
+					if(strncmp(database_owner, current_user) == 0)
 					{
 						call_ProcessUtility(PROCESS_UTILITY_ARGS,
 											NULL, NULL, NULL, NULL, NULL);
