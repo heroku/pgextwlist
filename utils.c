@@ -520,12 +520,10 @@ get_current_database_owner_name()
 static char *
 get_current_user_name()
 {
-	return CStringGetTextDatum(
-		GetUserNameFromId(GetUserId()
+	return GetUserNameFromId(GetUserId()
 #if PG_MAJOR_VERSION >= 905
 									, false
 #endif
-		)
 	);
 }
 
