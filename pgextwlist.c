@@ -372,7 +372,7 @@ extwlist_ProcessUtility(PROCESS_UTILITY_PROTO_ARGS)
 					else {
 						ereport(ERROR,
 							(errcode(ERRCODE_INSUFFICIENT_PRIVILEGE),
-					 		errmsg("permission denied to drop extension, role %s is not authorized on this database", current_user)));
+					 		errmsg("Permission denied to drop extension, role %s is not authorized on this database", current_user)));
 						return;
 					}
 				}
