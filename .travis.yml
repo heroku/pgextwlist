@@ -54,5 +54,3 @@ script:
                --privileged=true -it heroku/dod-package-dev:xenial \
                /root/deb-build/build.sh
   - du -a ../packages
-
-  
