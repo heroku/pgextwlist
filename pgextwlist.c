@@ -367,7 +367,7 @@ extwlist_ProcessUtility(PROCESS_UTILITY_PROTO_ARGS)
 					{
 						ereport(ERROR,
 								(errcode(ERRCODE_INTERNAL_ERROR), errmsg("Internal Error")));
-						elog(ERROR, 
+						elog(ERROR,
 							"current user (%s) or database owner (%s) is null", current_user, database_owner);
 						return;
 					}
