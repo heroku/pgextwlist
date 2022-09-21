@@ -42,7 +42,7 @@ jobs:
           pg_buildext -i '--locale=C.UTF-8' -o local_preload_libraries=pgextwlist -o extwlist.extensions=citext,earthdistance,pg_trgm installcheck
       - run: chmod 755 ../deb-build/build.sh
       - run: |
-          docker run -v $(readlink -f ../deb-build):/root/deb-build \
+          docker run -t -v $(readlink -f ../deb-build):/root/deb-build \
                     -v $(readlink -f ../packages/$DIST):/root/build \
                     -v $(readlink -f .):/root/build/pgextwlist \
                     -e DIST=$DIST -e PG_SUPPORTED_VERSIONS=$PG_SUPPORTED_VERSIONS \
