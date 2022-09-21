@@ -12,7 +12,7 @@ jobs:
       matrix:
         pg_version: ['9.5', '9.6', '10', '11', '12', '13', '14']
         os_version: ['xenial', 'focal']
-    runs-on: sfdc-hk-ubuntu-latest
+    runs-on: ubuntu-latest
     env:
       DIST: ${{ matrix.os_version }}
       PG_SUPPORTED_VERSIONS: ${{ matrix.pg_version }}
